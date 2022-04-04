@@ -67,7 +67,7 @@ function startGame()  {
     }
     //adds table for game play
     function createTable() {
-        var randomWordArray = randomWord.split('');
+        randomWordArray = randomWord.split('');
         for(var i = 0;i < randomWord.length;i++) {
             var newDiv = document.createElement('div');
             newDiv.setAttribute('class', 'letters')//sets class
@@ -106,12 +106,13 @@ function startGame()  {
                     document.getElementById('letter:'+(i+1))      
                }
                }   
-       }
-       if (correctInputArray.length===randomWordArray.length) {
-           console.log('you win');
-       }
+               if (correctInputArray.length===randomWordArray.length) {
+                console.log('you win');
+                }
+            }
+      
+        }
     }
-}
 
 
     //     function takeInput() {
