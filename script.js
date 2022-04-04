@@ -50,6 +50,7 @@ var userKey;
 var userHistory = [];
 var correctInput;
 var correctInputArray = [];
+var gameWasWon;
 
 document.getElementById("start").addEventListener("click", startGame);
 
@@ -57,9 +58,10 @@ function startGame()  {
    // clearStart()//function to delete start button
    // resetgame()//function to create start button
    // playagain()//function to be outside of win/loss game function created @startGame...use to cheat loss (for test)
-    wordGen();
-    createTable();
-    validateInput();//switched from takeInput
+   wordGen();//generates random word
+   createTable();//creates place for word
+   validateInput();//validates input if input = all of random word victory
+   timer();//starts timer... if reaches 0...loss
     //pickWord from word Bank
     function wordGen() {
         randomWord = wordBank[Math.floor(Math.random()*wordBank.length)] ;
@@ -108,11 +110,54 @@ function startGame()  {
                }   
                if (correctInputArray.length===randomWordArray.length) {
                 console.log('you win');
+                gameWon();
                 }
             }
       
         }
     }
+
+    var timerZone = document.getElementById('countdown');
+    function timer() {
+        var timeOnClock = 10;
+        var timeInterval = setInterval(function () {
+            if (gameWasWon === true) {
+                timerZone.textContent = 'You have won' 
+                clearInterval(timeInterval);
+            }
+            if (timeOnClock > 1 && gameWasWon !== true){
+                timerZone.textContent = timeOnClock + ' seconds remaining'
+                timeOnClock--;
+            }
+            else if (timeOnClock ===1 && gameWasWon !== true) {
+                timerZone.textContent = timeOnClock + ' second remaining'
+                timeOnClock--;
+            }
+        else if (gameWasWon===true) {
+            timerZone.textContent = 'You have won' 
+                clearInterval(timeInterval);
+        }
+            else{
+                timerZone.textContent = '0 seconds remaining';
+                gameLoss();
+                clearInterval(timeInterval);
+            }
+        }, 1000);
+    }
+     function gameWon() {
+        gameWasWon = true; 
+        if (gameWasWon === true){
+             console.log('hey look you won');
+            }
+         }
+    function gameLoss() {
+        console.log('hey you lost')
+        }
+        
+}
+
+
+
 
 // scoreboard
 
@@ -163,26 +208,7 @@ lossSubtractScore.addEventListener("click", function() {
 });
 
 
-    //     function takeInput() {
-//     document.onkeyup = function(input) {
-//     var userKey = input.key.toLowerCase();
 
-//         if(alphabet.includes(userKey)){
-//             document.getElementById('userInput').textContent = userKey;
-//             if(userHistory.includes(userKey)) {
-//                 return
-//             }
-//             else{
-//             userHistory.push(userKey);
-//             document.getElementById('userHistory').textContent = userHistory;
-//             }
-//         }
-//         else {
-//             console.log('something')
-//         }
-//     }
-// }
-}
 
 
 
