@@ -1,6 +1,7 @@
 // * As a user, I want to start the game by clicking on a button.
 // add event listener to change to game page
 
+
 // * As a user, I want to try and guess a word by filling in a number of blanks that match the number of letters in that word.
 // create input boxes for missing letters in the generated word using .length function
 
