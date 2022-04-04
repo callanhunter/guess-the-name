@@ -45,6 +45,11 @@ var wordBank = ['cool','beans','coding','fun','hurray','happy','another','super'
 var gameBox = document.getElementById('gameBox');
 var startButton = document.getElementById('start');
 var randomWord;
+var randomWordArray = [];
+var userKey;
+var userHistory = [];
+var correctInput;
+var correctInputArray = [];
 
 document.getElementById("start").addEventListener("click", startGame);
 
