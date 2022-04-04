@@ -77,8 +77,9 @@ function startGame()  {
             newDiv.setAttribute('id','letter:'+(i+1))//sets id to letter number
             newDiv.setAttribute('data-state', 'hidden');//sets to hidden
             newDiv.innerText = '_';
+            newDiv.setAttribute('style', 'display: inline-block;');
         
-            document.body.appendChild(newDiv);
+            gameBox.appendChild(newDiv);
         }
         
     }

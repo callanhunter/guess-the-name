@@ -26,6 +26,14 @@ button {
     margin-bottom: 10px;
 }
 
+section {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+
+
 /* #input-box {
     display: block;
     margin-left: 10em;

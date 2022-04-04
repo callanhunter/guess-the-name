@@ -11,25 +11,28 @@
     <header>
         <h1>Welcome!</h1>
         <p>Press start to begin</p>
-        <h1 id ='userInput'></h1>
-        <p id="userHistory"></p>
     </header>
     <main>
-        <div id="start-button">
+        <div id="gameBox">
             <p id="countdown"></p>
-            <input type="text" id="input-box">
             <button id ='start'>Start</button>
         </div>
-        <div>
-            <h2>Wins: <span id="win-count">0</span></h2>
-            <button id="win-subtract-score">Subtract Score</button>
-            <button id="win-add-score">Add Score</button>
-        </div>
-        <div>
-            <h2>Losses: <span id="loss-count">0</span></h2>
-            <button id="loss-subtract-score">Subtract Score</button>
-            <button id="loss-add-score">Add Score</button>
-        </div>
+        <section>
+            <div>
+                <p id ='userInput'></p>
+                <p id="userHistory"></p>
+            </div>
+            <div>
+                <h2>Wins: <span id="win-count">0</span></h2>
+                <button id="win-subtract-score">Subtract Score</button>
+                <button id="win-add-score">Add Score</button>
+            </div>
+            <div>
+                <h2>Losses: <span id="loss-count">0</span></h2>
+                <button id="loss-subtract-score">Subtract Score</button>
+                <button id="loss-add-score">Add Score</button>
+            </div>
+        </section>
     </main>
     <script src="script.js"></script>
 </body>
