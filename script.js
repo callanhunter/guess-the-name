@@ -37,7 +37,62 @@
 
 // * When a user refreshes or returns to the brower page, the win and loss counts should persist.
 // ties in with step above, keep score unless user decides to start over
+var userHistory = [];
+var alphabet = "abcdefghijklmnopqrstuvwxyz"
+var wordBank = ['cool','beans','coding','fun','hurray','happy','another','super']
 
+var gameBox = document.getElementById('gameBox');
+var startButton = document.getElementById('start');
+var randomWord;
+
+document.getElementById("start").addEventListener("click", startGame);
+
+function startGame()  {
+   // clearStart()//function to delete start button
+   // resetgame()//function to create start button
+   // playagain()//function to be outside of win/loss game function created @startGame...use to cheat loss (for test)
+    wordGen();
+    createTable();
+    takeInput();
+    //pickWord from word Bank
+    function wordGen() {
+        randomWord = wordBank[Math.floor(Math.random()*wordBank.length)] ;
+        console.log(randomWord)
+    }
+    //adds table for game play
+    function createTable() {
+        var randomWordArray = randomWord.split('');
+        for(var i = 0;i < randomWord.length;i++) {
+            var newDiv = document.createElement('div');
+            newDiv.setAttribute('id','letter:'+(i+1))
+            newDiv.innerText = randomWordArray[i];
+            
+            
+            document.body.appendChild(newDiv);
+        }
+        
+    }
+    //tracks button clicks and puts them in an array
+    function takeInput() {
+    document.onkeyup = function(input) {
+    var userKey = input.key.toLowerCase();
+
+        if(alphabet.includes(userKey)){
+            document.getElementById('userInput').textContent = userKey;
+            if(userHistory.includes(userKey)) {
+                return
+            }
+            else{
+            userHistory.push(userKey);
+            document.getElementById('userHistory').textContent = userHistory;
+            }
+        }
+        else {
+            console.log('something')
+        }
+    }
+}
+}
 
 
 
