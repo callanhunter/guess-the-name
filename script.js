@@ -101,18 +101,21 @@ function startGame()  {
             else {
                 console.log('something')
             }
+            //pressing letter twice adds twice to correctinput Array NEED TO FIX
            if (randomWordArray.includes(userKey)){   
                correctInput = userKey;
                correctInputArray += correctInput;
                for(var i = 0; i<randomWordArray.length;i++) {
                    if(correctInput===randomWordArray[i]){
                     document.getElementById('letter:'+(i+1)).textContent = randomWordArray[i]  
-                    document.getElementById('letter:'+(i+1))      
+                    //document.getElementById('letter:'+(i+1))      
                }
                }   
                if (correctInputArray.length===randomWordArray.length) {
                 console.log('you win');
-                gameWon();
+                winScore();
+                gameWasWon = true;
+                
                 }
             }
       
@@ -123,10 +126,10 @@ function startGame()  {
     function timer() {
         var timeOnClock = 10;
         var timeInterval = setInterval(function () {
-            if (gameWasWon === true) {
-                timerZone.textContent = 'You have won' 
-                clearInterval(timeInterval);
-            }
+            // if (gameWasWon === true) {
+            //     timerZone.textContent = 'You have won' 
+            //     clearInterval(timeInterval);
+            // }
             if (timeOnClock > 1 && gameWasWon !== true){
                 timerZone.textContent = timeOnClock + ' seconds remaining'
                 timeOnClock--;
@@ -135,33 +138,18 @@ function startGame()  {
                 timerZone.textContent = timeOnClock + ' second remaining'
                 timeOnClock--;
             }
-        else if (gameWasWon===true) {
-            timerZone.textContent = 'You have won' 
-                clearInterval(timeInterval);
+         else if (gameWasWon===true) {
+             timerZone.textContent = 'You have won' 
+                 clearInterval(timeInterval);
         }
             else{
                 timerZone.textContent = '0 seconds remaining';
-                gameLoss();
+                lossScore();
                 clearInterval(timeInterval);
             }
         }, 1000);
     }
-     function gameWon() {
-        gameWasWon = true; 
-        if (gameWasWon === true){
-             console.log('hey look you won');
-            }
-         }
-    function gameLoss() {
-        gameWasLost = true;
-        console.log('hey you lost')
-        }
-        
 }
-
-
-
-
 // scoreboard
 
 var winCount = 0;
@@ -173,18 +161,11 @@ var wins = document.querySelector("#win-count");
 function winDisplayCount() {
     wins.textContent = winCount;
 }
-winAddScore.addEventListener("click", function(e) {
-    console.log(e);
-    winCount++;
-    winDisplayCount();
-});
-
-winSubtractScore.addEventListener("click", function() {
-    if (winCount > 0) {
-        winCount--;
+//stop win counter after loss
+function winScore() {
+        winCount++;
         winDisplayCount();
-    }
-});
+};
 
 
 var lossCount = 0;
@@ -197,18 +178,10 @@ var losses = document.querySelector("#loss-count");
 function lossDisplayCount() {
     losses.textContent = lossCount;
 }
-lossAddScore.addEventListener("click", function(l) {
-    console.log(l);
+function lossScore() { 
     lossCount++;
     lossDisplayCount();
-});
-
-lossSubtractScore.addEventListener("click", function() {
-    if (lossCount > 0) {
-        lossCount--;
-        lossDisplayCount();
-    }
-});
+};
 
 
 
