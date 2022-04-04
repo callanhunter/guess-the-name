@@ -51,6 +51,7 @@ var userHistory = [];
 var correctInput;
 var correctInputArray = [];
 var gameWasWon;
+var gameWasLost;
 
 document.getElementById("start").addEventListener("click", startGame);
 
@@ -151,6 +152,7 @@ function startGame()  {
             }
          }
     function gameLoss() {
+        gameWasLost = true;
         console.log('hey you lost')
         }
         
