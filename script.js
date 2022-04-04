@@ -53,7 +53,7 @@ function startGame()  {
    // playagain()//function to be outside of win/loss game function created @startGame...use to cheat loss (for test)
     wordGen();
     createTable();
-    takeInput();
+    validateInput();//switched from takeInput
     //pickWord from word Bank
     function wordGen() {
         randomWord = wordBank[Math.floor(Math.random()*wordBank.length)] ;
@@ -64,34 +64,69 @@ function startGame()  {
         var randomWordArray = randomWord.split('');
         for(var i = 0;i < randomWord.length;i++) {
             var newDiv = document.createElement('div');
-            newDiv.setAttribute('id','letter:'+(i+1))
-            newDiv.innerText = randomWordArray[i];
-            
-            
+            newDiv.setAttribute('class', 'letters')//sets class
+            newDiv.setAttribute('id','letter:'+(i+1))//sets id to letter number
+            newDiv.setAttribute('data-state', 'hidden');//sets to hidden
+            newDiv.innerText = '_';
+        
             document.body.appendChild(newDiv);
         }
         
     }
-    //tracks button clicks and puts them in an array
-    function takeInput() {
-    document.onkeyup = function(input) {
-    var userKey = input.key.toLowerCase();
-
-        if(alphabet.includes(userKey)){
-            document.getElementById('userInput').textContent = userKey;
-            if(userHistory.includes(userKey)) {
-                return
+    //tracks button clicks and puts them into arrays; userHistory & correctInputArray. 
+    //if userInput guesses all letters win is given to console
+    function validateInput() {
+        document.onkeyup = function(input) {
+        userKey = input.key.toLowerCase();  
+            if(alphabet.includes(userKey)){
+                document.getElementById('userInput').textContent = userKey;
+                if(userHistory.includes(userKey)) {
+                    
+                }
+                else{
+                userHistory.push(userKey);
+                document.getElementById('userHistory').textContent = userHistory;
+                }
             }
-            else{
-            userHistory.push(userKey);
-            document.getElementById('userHistory').textContent = userHistory;
+            else {
+                console.log('something')
             }
-        }
-        else {
-            console.log('something')
-        }
+           if (randomWordArray.includes(userKey)){   
+               correctInput = userKey;
+               correctInputArray += correctInput;
+               for(var i = 0; i<randomWordArray.length;i++) {
+                   if(correctInput===randomWordArray[i]){
+                    document.getElementById('letter:'+(i+1)).textContent = randomWordArray[i]  
+                    document.getElementById('letter:'+(i+1))      
+               }
+               }   
+       }
+       if (correctInputArray.length===randomWordArray.length) {
+           console.log('you win');
+       }
     }
 }
+
+
+    //     function takeInput() {
+//     document.onkeyup = function(input) {
+//     var userKey = input.key.toLowerCase();
+
+//         if(alphabet.includes(userKey)){
+//             document.getElementById('userInput').textContent = userKey;
+//             if(userHistory.includes(userKey)) {
+//                 return
+//             }
+//             else{
+//             userHistory.push(userKey);
+//             document.getElementById('userHistory').textContent = userHistory;
+//             }
+//         }
+//         else {
+//             console.log('something')
+//         }
+//     }
+// }
 }
 
 
