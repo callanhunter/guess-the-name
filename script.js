@@ -114,6 +114,54 @@ function startGame()  {
         }
     }
 
+// scoreboard
+
+var winCount = 0;
+
+var winAddScore = document.querySelector("#win-add-score");
+var winSubtractScore = document.querySelector("#win-subtract-score");
+var wins = document.querySelector("#win-count");
+
+function winDisplayCount() {
+    wins.textContent = winCount;
+}
+winAddScore.addEventListener("click", function(e) {
+    console.log(e);
+    winCount++;
+    winDisplayCount();
+});
+
+winSubtractScore.addEventListener("click", function() {
+    if (winCount > 0) {
+        winCount--;
+        winDisplayCount();
+    }
+});
+
+
+var lossCount = 0;
+
+var lossAddScore = document.querySelector("#loss-add-score");
+var lossSubtractScore = document.querySelector("#loss-subtract-score");
+var losses = document.querySelector("#loss-count");
+
+
+function lossDisplayCount() {
+    losses.textContent = lossCount;
+}
+lossAddScore.addEventListener("click", function(l) {
+    console.log(l);
+    lossCount++;
+    lossDisplayCount();
+});
+
+lossSubtractScore.addEventListener("click", function() {
+    if (lossCount > 0) {
+        lossCount--;
+        lossDisplayCount();
+    }
+});
+
 
     //     function takeInput() {
 //     document.onkeyup = function(input) {
