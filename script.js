@@ -52,7 +52,8 @@ var correctInput;
 var correctInputArray = [];
 var gameWasWon;
 var gameWasLost;
-
+var winCount = 0;
+var lossCount = 0;
 document.getElementById("start").addEventListener("click", startGame);
 
 function startGame()  {
@@ -113,9 +114,8 @@ function startGame()  {
                }   
                if (correctInputArray.length===randomWordArray.length) {
                 console.log('you win');
-                winScore();
                 gameWasWon = true;
-                
+                winOrLoss();
                 }
             }
       
@@ -144,49 +144,63 @@ function startGame()  {
         }
             else{
                 timerZone.textContent = '0 seconds remaining';
-                lossScore();
+                gameWasLost = true;
+                winOrLoss();
                 clearInterval(timeInterval);
             }
         }, 1000);
     }
 }
-// scoreboard
 
-var winCount = 0;
-
-var winAddScore = document.querySelector("#win-add-score");
-var winSubtractScore = document.querySelector("#win-subtract-score");
-var wins = document.querySelector("#win-count");
-
-function winDisplayCount() {
-    wins.textContent = winCount;
-}
-//stop win counter after loss
-function winScore() {
+function winOrLoss () {
+    if(gameWasWon === true){
         winCount++;
         winDisplayCount();
-};
-
-
-var lossCount = 0;
-
-var lossAddScore = document.querySelector("#loss-add-score");
-var lossSubtractScore = document.querySelector("#loss-subtract-score");
-var losses = document.querySelector("#loss-count");
-
-
-function lossDisplayCount() {
-    losses.textContent = lossCount;
+        console.log('success')
+    }
+    else if (gameWasLost===true){
+        lossCount++;
+        console.log('successfulL')
+        lossDisplayCount();
+    }
+    else {
+        console.log('error')
+    }
 }
-function lossScore() { 
-    lossCount++;
-    lossDisplayCount();
-};
+var wins = document.querySelector("#win-count");
+function winDisplayCount() {
+    wins.innerHTML = winCount;
+}
 
+var losses = document.querySelector("#loss-count");
+function lossDisplayCount() {
+     losses.textContent = lossCount;
+ }
 
+// function storeDub() {
+//     localStorage.setItem('dubs', winCount);
+//     getDub();
+// }
+// function getDub() {
+//     winCount = localStorage.getItem('gameWins');
+//     wins.textContent = winCount;
+// }//json.parse() deleted
 
+// function storeNotDub() {
+//     localStorage.setItem('gameLosses', lossCount);
+//     getLoss();
+    
+// }
+// function getLoss() {
+//     lossCount = localStorage.getItem('gameLosses');
+//     losses.textContent = lossCount;
+// }
 
-
+// function init() {
+//     getLoss();
+//     getDub();
+//  }
+//init();
 
 
 
