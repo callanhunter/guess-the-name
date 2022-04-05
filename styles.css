@@ -2,6 +2,8 @@ header {
     display: flex;
     flex-direction: column;
     align-items: center;
+    background-color: blue;
+    color: white;
 }
 h1 {
     font-size: 75px;
@@ -21,9 +23,11 @@ p {
 } */
 button {
     display: block;
-    margin-left: 20em;
-    margin-right: 20em;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 2em;
     margin-bottom: 10px;
+    background-color: aquamarine;
 }
 
 section {
@@ -31,7 +35,17 @@ section {
     flex-direction: column;
     justify-content: center;
 }
+#gameBox {
+    background-color: yellow;
+}
 
+.letters {
+    font-size: large;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    padding-right: 10px;
+    background-color: aqua;
+    color: red;
+}
 
 
 /* #input-box {

@@ -52,8 +52,7 @@ var correctInput;
 var correctInputArray = [];
 var gameWasWon;
 var gameWasLost;
-var winCount = 0;
-var lossCount = 0;
+
 document.getElementById("start").addEventListener("click", startGame);
 
 function startGame()  {
@@ -109,9 +108,8 @@ function startGame()  {
                for(var i = 0; i<randomWordArray.length;i++) {
                    if(correctInput===randomWordArray[i]){
                     document.getElementById('letter:'+(i+1)).textContent = randomWordArray[i]  
-                    //document.getElementById('letter:'+(i+1))      
-               }
-               }   
+                    }
+                }   
                if (correctInputArray.length===randomWordArray.length) {
                 console.log('you win');
                 gameWasWon = true;
@@ -124,12 +122,8 @@ function startGame()  {
 
     var timerZone = document.getElementById('countdown');
     function timer() {
-        var timeOnClock = 10;
+        var timeOnClock = 30;
         var timeInterval = setInterval(function () {
-            // if (gameWasWon === true) {
-            //     timerZone.textContent = 'You have won' 
-            //     clearInterval(timeInterval);
-            // }
             if (timeOnClock > 1 && gameWasWon !== true){
                 timerZone.textContent = timeOnClock + ' seconds remaining'
                 timeOnClock--;
@@ -151,7 +145,8 @@ function startGame()  {
         }, 1000);
     }
 }
-
+var winCount = 0;
+var lossCount = 0;
 function winOrLoss () {
     if(gameWasWon === true){
         winCount++;
@@ -167,46 +162,29 @@ function winOrLoss () {
         console.log('error')
     }
 }
+function numOfWins() {
+    return winCount;
+}
 var wins = document.querySelector("#win-count");
 function winDisplayCount() {
-    wins.innerHTML = winCount;
+    localStorage.setItem('myWins', numOfWins());
+    renderWins();
 }
-
+function renderWins() {
+    var lastWin = localStorage.getItem('myWins');
+    wins.textContent = lastWin;
+}
+function numOfLosses() {
+    return lossCount;
+}
 var losses = document.querySelector("#loss-count");
 function lossDisplayCount() {
-     losses.textContent = lossCount;
+     localStorage.setItem('myLosses',numOfLosses())
+     renderLosses();
  }
-
-// function storeDub() {
-//     localStorage.setItem('dubs', winCount);
-//     getDub();
-// }
-// function getDub() {
-//     winCount = localStorage.getItem('gameWins');
-//     wins.textContent = winCount;
-// }//json.parse() deleted
-
-// function storeNotDub() {
-//     localStorage.setItem('gameLosses', lossCount);
-//     getLoss();
-    
-// }
-// function getLoss() {
-//     lossCount = localStorage.getItem('gameLosses');
-//     losses.textContent = lossCount;
-// }
-
-// function init() {
-//     getLoss();
-//     getDub();
-//  }
-//init();
-
-
-
-
-
-
-
+function renderLosses () {
+    var lastLoss = localStorage.getItem('myLosses');
+    losses.textContent=lastLoss;
+}
 
 
